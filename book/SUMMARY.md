@@ -74,4 +74,5 @@ This is the summary of the PX4 dev guide.
   * [Sending Debug Values](advanced-debug-values.md)
   * [Indoor / Fake GPS](advanced-fake-gps.md)
   * [Camera Trigger](advanced-camera-trigger.md)
+  * [EKF2 Log Replay](ekf2_log_replay.md)
   * [Licenses](advanced-licenses.md)
