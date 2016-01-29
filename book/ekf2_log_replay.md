@@ -31,3 +31,6 @@ For example add the following line at the end of the script
 param set EKF2_GB_NOISE 0.001
 ```
 This will change the process noise for the gyro bias.
+
+Another way of how to modify parameters is to use QGroundControl. QGroundControl will automatically connect to the replay process and you can use
+the Parameters tab to do the required parmeter adjustments. You can also profit from viewing all of the estimator data in the Analyze widget.
