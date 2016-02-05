@@ -21,6 +21,7 @@ This is the summary of the PX4 dev guide.
 * Tutorials
   * [Ground Control Station](qgroundcontrol-intro.md)
   * [Writing an Application](tutorial-hello-sky.md)
+  * [Video streaming in QGC](advanced-videostreaming-qgc.md)
 * Simulation
   * [Basic Simulation](simulation-sitl.md)
   * [Gazebo Simulation](simulation-gazebo.md)
