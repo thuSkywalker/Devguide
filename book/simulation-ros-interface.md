@@ -25,7 +25,7 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 In case you would like to modify the Gazebo simulation to integrate sensors publishing directly to ROS topics e.g. the Gazebo ROS laser plugin, Gazebo must be launched with the appropriate ROS wrappers. To do this start the simulator with `no_sim=1`:
 
 ```sh
-nosim_=1 make posix_sitl_default gazebo
+no_sim=1 make posix_sitl_default gazebo
 ```
 
 This should start the simulator and the console will look like this
