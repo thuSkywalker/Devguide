@@ -138,8 +138,9 @@ To set up the development environment, see [Getting Started](https://github.com/
 Use the [HelloWorld](https://github.com/ATLFlight/ATLFlightDocs/blob/master/HelloWorld.md) and [dspal_tester](https://github.com/ATLFlight/dspal/blob/master/README.md) instructions to verify your setup is correct.
 
 The quick instructions are:
-```
+
 Get the [SDK](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-linux.bin) and Hexagon tools 7.2.10 installers.
+```
 git clone https://github.com/ATLFlight/cross_toolchain.git
 mv qualcomm_hexagon_sdk_2_0_eval.bin cross_toolchain/downloads
 mv Hexagon.LLVM_linux_installer_7.2.10.bin.bin cross_toolchain/downloads
@@ -188,9 +189,9 @@ Go back to ADB shell
 
 When the px4 prompt is shown, run:
 ```
-px4> muorb start
+muorb start
 ```
-That will start the PX4 modules running on the DSP.
+That will start the PX4 modules running on the DSP. The "muorb start" command should be added to the startup script for the apps processor (Krait) mainapp.
 
 </aside>
 
