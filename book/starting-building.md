@@ -134,7 +134,64 @@ make qurt_eagle_default
 ```
 
 <aside class="todo">
-Add Snapdragon flash instructions
+To set up the development environment, see [Getting Started](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). You must be able to do a graphical install of the Hexagon tools so a remote shell to the machine will not work.
+Use the [HelloWorld](https://github.com/ATLFlight/ATLFlightDocs/blob/master/HelloWorld.md) and [dspal_tester](https://github.com/ATLFlight/dspal/blob/master/README.md) instructions to verify your setup is correct.
+
+The quick instructions are:
+```
+Get the [SDK](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-linux.bin) and Hexagon tools 7.2.10 installers.
+git clone https://github.com/ATLFlight/cross_toolchain.git
+mv qualcomm_hexagon_sdk_2_0_eval.bin cross_toolchain/downloads
+mv Hexagon.LLVM_linux_installer_7.2.10.bin.bin cross_toolchain/downloads
+./cross_toolchain/install.sh
+```
+
+Follow the instructions to set up the development environment. If you accept all the installl defaults you can at any time re-run the following to get the env setup. It will only install missing components.
+```
+./cross_toolchain/install.sh
+
+Make sure to set the following environment variables:
+   export HEXAGON_SDK_ROOT=${HOME}/Qualcomm/Hexagon_SDK/2.0
+   export HEXAGON_TOOLS_ROOT=${HOME}/Qualcomm/HEXAGON_Tools/7.2.10/Tools
+   export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/Hexagon_SDK/2.0/sysroot
+   export PATH=${HEXAGON_SDK_ROOT}/gcc-linaro-arm-linux-gnueabihf-4.8-2013.08_linux/bin:$PATH
+
+```
+The qurt support has not yet been fully integrated upstream (WIP) so please use the following branch:
+```
+git clone https://github.com/ATLFlight/Firmware -b integration3
+cd Firmware
+make posix_eagle_default
+make qurt_eagle_default
+```
+
+To load the SW on the device, connect via USB cable and make sure the device is booted. In another terminal do:
+```
+adb shell
+```
+If that works, go back to previous terminal:
+```
+cd build_posix_eagle_default
+make mainapp-load
+cd build_qurt_eagle_default
+make libmainapp-load
+```
+Run the DSP debug monitor:
+```
+${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
+```
+Go back to ADB shell
+```
+# cd home/linaro
+# ./mainapp
+```
+
+When the px4 prompt is shown, run:
+```
+px4> muorb start
+```
+That will start the PX4 modules running on the DSP.
+
 </aside>
 
 ## Compiling in a graphical IDE
