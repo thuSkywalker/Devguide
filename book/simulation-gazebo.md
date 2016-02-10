@@ -45,7 +45,7 @@ Follow the [Linux installation instructions](http://gazebosim.org/tutorials?tut=
 
 ## Running the Simulation
 
-Run the PX4 SITL with the Iris configuration in the Firmware directory:
+Run the PX4 SITL with one of the airframes (Quads, planes and VTOL are supported, including optical flow):
 
 ### Quadrotor
 
@@ -54,6 +54,24 @@ Run the PX4 SITL with the Iris configuration in the Firmware directory:
 ```sh
 cd ~/src/Firmware
 make posix_sitl_default gazebo
+```
+
+### Quadrotor with Optical Flow
+
+<div class="host-code"></div>
+
+```sh
+cd ~/src/Firmware
+make posix gazebo_iris_opt_flow
+```
+
+### Tailsitter VTOL
+
+<div class="host-code"></div>
+
+```sh
+cd ~/src/Firmware
+make posix_sitl_default gazebo_standard_vtol
 ```
 
 ### Tailsitter VTOL
