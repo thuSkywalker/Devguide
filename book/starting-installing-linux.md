@@ -87,22 +87,6 @@ Hexagon SDK:
 chmod u+x qualcomm_hexagon_sdk_2_0_eval.bin
 ./qualcomm_hexagon_sdk_2_0_eval.bin
 ```
-### Raspberry Pi hardware
-Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the *native* Raspberry Pi toolchain to compile directly on the Pi, see [here](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
-
-<div class="host-code"></div>
-
-```sh
-git clone https://github.com/pixhawk/rpi_toolchain.git
-cd rpi_toolchain
-chmod +x install_cross.sh
-./install_cross.sh
-```
-You will be required to enter your password for toolchain installation to complete successfully.
-
-You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of ```/opt/rpi_toolchain```. Run ``` ./install_cross.sh <PATH>```. The installer will automatically configure required environment variables as well.
-
-### Snapdragon Flight
 
 Developers working on Snapdragon Flight should download the Hexagon Linux toolchain and execute the commands below. The installation guide will come up, leave everything at default by just continuing to press enter.
 
@@ -133,6 +117,18 @@ Load the new configuration:
 source ~/.bashrc
 ```
 
+Copy the latest adsp image
+
+<div class="host-code"></div>
+
+```sh
+unzip qcom_flight_controller_hexagon_sdk_add_on.zip
+cd images/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmware/
+adb push . /lib/firmware
+```
+
+reboot the snapdragon
+
 There is a an external guide for installing the toolchain at 
 [GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). The 
 [HelloWorld](https://github.com/ATLFlight/HelloWorld) and [DSPAL tests](https://github.com/ATLFlight/dspal/tree/master/test/dspal_tester) can be used to validate your tools installation and DSP image.
@@ -144,5 +140,22 @@ Messages from the DSP can be viewed using mini-dm.
 ```sh
 $HOME/Qualcomm/Hexagon_SDK/2.0/tools/mini-dm/Linux_Debug/mini-dm
 ```
+
+### Raspberry Pi hardware
+Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the *native* Raspberry Pi toolchain to compile directly on the Pi, see [here](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
+
+<div class="host-code"></div>
+
+```sh
+git clone https://github.com/pixhawk/rpi_toolchain.git
+cd rpi_toolchain
+chmod +x install_cross.sh
+./install_cross.sh
+```
+You will be required to enter your password for toolchain installation to complete successfully.
+
+You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of ```/opt/rpi_toolchain```. Run ``` ./install_cross.sh <PATH>```. The installer will automatically configure required environment variables as well.
+
+## Finishing Up
 
 Now continue to run the [first build](starting-building.md)!
