@@ -69,15 +69,23 @@ If the resulting `gcc-arm-none-eabi` version produces build errors for PX4/Firmw
 
 ### Snapdragon Flight
 
-Developers working on Snapdragon Flight should request the Hexagon 7.2.10 Linux toolchain and 2.0 SDK for Linux from [here](https://developer.qualcomm.com/software/hexagon-dsp-sdk/application) and execute the commands below. The installation guide will come up, leave everything at default by just continuing to press enter.
+#### ADB installation
 
-Arm cross toolchain:
+First add the official Ubuntu tablet team repository, then install ADB and the arm cross toolchain.
 
 <div class="host-code"></div>
 
 ```sh
-sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf -y
+sudo add-apt-repository ppa:phablet-team/tools && sudo apt-get update -y
 ```
+
+<div class="host-code"></div>
+
+```sh
+sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf android-tools-adb android-tools-fastboot -y
+```
+
+Developers working on Snapdragon Flight should request the Hexagon 7.2.10 Linux toolchain and 2.0 SDK for Linux from [here](https://developer.qualcomm.com/software/hexagon-dsp-sdk/application) and execute the commands below. The installation guide will come up, leave everything at default by just continuing to press enter.
 
 Hexagon SDK:
 
