@@ -108,7 +108,7 @@ A successful build followed by executing mainapp will give you this :
 [init] shell id: 1996021760
 [init] task name: mainapp
 
-______  __   __    ___ 
+______  __   __    ___
 | ___ \ \ \ / /   /   |
 | |_/ /  \ V /   / /| |
 |  __/   /   \  / /_| |
@@ -177,21 +177,26 @@ make mainapp-load
 cd build_qurt_eagle_default
 make libmainapp-load
 ```
+Or all in one line:
+```
+make posix_eagle_default && (cd build_posix_eagle_default && make mainapp-load) && (make qurt_eagle_default && cd build_qurt_eagle_default && make libmainapp-load)
+```
+
+Copy the startup files:
+```
+adb push posix-configs/eagle/flight/mainapp-flight.config /usr/share/data/adsp/mainapp.config
+adb push posix-configs/eagle/flight/px4-flight.config /usr/share/data/adsp/px4.config
+```
+
 Run the DSP debug monitor:
 ```
 ${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
 ```
 Go back to ADB shell
 ```
-# cd home/linaro
-# ./mainapp
+(cd /home/linaro && ./mainapp /usr/share/data/adsp/mainapp.config); exit
 ```
-
-When the px4 prompt is shown, run:
-```
-muorb start
-```
-That will start the PX4 modules running on the DSP. The "muorb start" command should be added to the startup script for the apps processor (Krait) mainapp.
+The exit call at the end is currently needed because the shell gets scrambled.
 
 </aside>
 
