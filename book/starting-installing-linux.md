@@ -69,6 +69,10 @@ If the resulting `gcc-arm-none-eabi` version produces build errors for PX4/Firmw
 
 ### Snapdragon Flight
 
+<aside class="tip">
+If you are part of the core PX4 dev team contact maintainer for information about access to the SDK files.
+</aside>
+
 #### ADB installation
 
 First add the official Ubuntu tablet team repository, then install ADB and the arm cross toolchain.
@@ -135,7 +139,9 @@ cd images/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmwar
 adb push . /lib/firmware
 ```
 
-reboot the snapdragon
+Reboot the snapdragon
+
+#### References
 
 There is a an external guide for installing the toolchain at 
 [GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). The 
