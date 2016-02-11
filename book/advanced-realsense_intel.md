@@ -24,7 +24,7 @@ The tutorial is ordered in the following way: In a first part it is shown how to
 		- Download updates while installing 
 		- Install this third party software
 - After the installation you might need to enable the Virtual Box to display Ubuntu on the whole desktop:
-	-  Click on Devices->Insert Guest Additions CD image in the menu bar of the Virtual Box.
+	-  Start VM Ubuntu and login, Click on Devices->Insert Guest Additions CD image in the menu bar of the Virtual Box.
 	-  Click on "Run" and enter password on the windows that pop up in Ubuntu.
 	-  Wait until the installation is completed and then restart. Now, it should be possible to display the VM on the whole desktop.
 	-  If a window pops up in Ubuntu that asks whether to update, reject to update at this point.
