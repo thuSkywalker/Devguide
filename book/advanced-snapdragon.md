@@ -2,30 +2,44 @@
 
 ## Wifi-settings
 
-A uart-based console (8N1, 115200 baud) is the easiest way to initially connect.
+<aside class="todo">These are notes for advanced developers.</aside>
 
-To configure the device in AP mode (AP settings can be modified in `/etc/hostapd.conf`):
+Connect to the Linux shell (see [console instructions](advanced-system-console.html#snapdragon-flight-wiring-the-console)).
+
+### Access point mode
+
+If you want the Snapdragon to be a wifi access point (AP mode), edit the file: `/etc/hostapd.conf` and set:
+
+```
+ssid=EnterYourSSID
+wpa_passphrase=EnterYourPassphrase
+```
+
+Then configure AP mode:
 
 ```
 /usr/local/qr-linux/wificonfig.sh -s softap
 reboot
 ```
 
-Or, set the device to station mode:
+### Station mode
+
+If you want the Snapdragon to connect to your existing wifi, edit the file: `/etc/wpa_supplicant/wpa_supplicant.conf` and add your network settings:
+
+```
+network={
+    ssid="my existing network ssid"
+    psk="my existing password"
+}
+```
+
+Then configure station mode:
 
 ```
 /usr/local/qr-linux/wificonfig.sh -s station
 reboot
 ```
 
-You can add network info in `/etc/wpa_supplicant/wpa_supplicant.conf`:
-
-```
-network={
-    ssid="my network ssid"
-    psk="mypassword"
-}
-```
 
 ## Troubleshooting
 
