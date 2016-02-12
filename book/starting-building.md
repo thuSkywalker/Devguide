@@ -192,11 +192,12 @@ Run the DSP debug monitor:
 ```
 ${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
 ```
-Go back to ADB shell
+
+Go back to ADB shell and run mainapp:
 ```
-(cd /home/linaro && ./mainapp /usr/share/data/adsp/mainapp.config); exit
+cd /home/linaro
+./mainapp /usr/share/data/adsp/mainapp.config
 ```
-The exit call at the end is currently needed because the shell gets scrambled.
 
 </aside>
 
