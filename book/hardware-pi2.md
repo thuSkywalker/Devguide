@@ -81,11 +81,16 @@ sudo /etc/init.d/avahi-daemon restart
 ```
 And that's it. You should be able to access your Pi directly by its hostname from any computer on the network.
 
-### Configuring a SSH Public-Key 
+
+<aside class="tip">
+You might have to add .local to the hostname to discover it.
+</aside>
+
+### Configuring a SSH Public-Key
 
 In order to allow the PX4 development environment to automatically push executables to your board, you need to configure passwordless access to the RPi. We use the public-key authentication method for this.
 
-To generate new SSH keys enter the following commands (Choose a sensible hostname such as ```<YOURNANME>@<YOURDEVICE>```.  Here we have used ```pi@px4autopilot```) 
+To generate new SSH keys enter the following commands (Choose a sensible hostname such as ```<YOURNANME>@<YOURDEVICE>```.  Here we have used ```pi@px4autopilot```)
 
 These commands need to be run on the HOST development computer!
 
@@ -105,7 +110,7 @@ ls ~/.ssh
 authorized_keys  id_rsa  id_rsa.pub  known_hosts
 ```
 The ```id_rsa``` file is your private key. Keep this on the development computer.
-The ```id_rsa.pub``` file is your public key. This is what you put on the targets you want to connect to. 
+The ```id_rsa.pub``` file is your public key. This is what you put on the targets you want to connect to.
 
 To copy your public key to your Raspberry Pi, use the following command to append the public key to your authorized_keys file on the Pi, sending it over SSH:
 
@@ -131,7 +136,7 @@ If this did not work, delete your keys with ```rm ~/.ssh/id*``` and follow the i
 ### Testing file transfer
 We use SCP to transfer files from the development computer to the target board over a network (WiFi or Ethernet).
 
-To test your setup, try pushing a file from the development PC to the Pi over the network now. Make sure the Pi has network access, and you can SSH into it. 
+To test your setup, try pushing a file from the development PC to the Pi over the network now. Make sure the Pi has network access, and you can SSH into it.
 
 <div class="host-code"></div>
 
@@ -155,7 +160,7 @@ cd rpi_toolchain
 chmod +x install_native.sh
 ./install_native.sh
 ```
-### Building the code 
+### Building the code
 
 Continue with our [standard build system installation](starting-installing-linux.md).
 
