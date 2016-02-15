@@ -70,6 +70,7 @@ This is the summary of the PX4 dev guide.
   * [FAQ](advanced-faq.md)
   * [System Console](advanced-system-console.md)
   * [System Boot](advanced-system-startup.md)
+  * [Parameters & Configs](advanced-configurations.md)
   * [Simulation Debugging](simulation-debugging.md)
   * [Sending Debug Values](advanced-debug-values.md)
   * [Indoor / Fake GPS](advanced-fake-gps.md)
