@@ -12,15 +12,11 @@ The PX4 [system console](advanced-system-console.md) offers the ```param``` tool
 
 The param show command lists all system parameters:
 
-<div class="host-code"></div>
-
 ```sh
 param show
 ```
 
 To be more selective a partial parameter name with wildcard can be used:
-
-<div class="host-code"></div>
 
 ```sh
 nsh> param show RC_MAP_A*
@@ -37,15 +33,11 @@ x   RC_MAP_ACRO_SW [375,514] : 0
 
 The standard save command will store the parameters in the current default file:
 
-<div class="host-code"></div>
-
 ```sh
 param save
 ```
 
 If provided with an argument, it will store the parameters instead to this new location:
-
-<div class="host-code"></div>
 
 ```sh
 param save /fs/microsd/vtol_param_backup
@@ -55,15 +47,11 @@ There are two different commands to load parameters: ```param load``` will load 
 
 Overwrite the current parameters:
 
-<div class="host-code"></div>
-
 ```sh
 param load /fs/microsd/vtol_param_backup
 ```
 
 Merge the current parameters with stored parameters (stored values which are non-default take precedence):
-
-<div class="host-code"></div>
 
 ```sh
 param import /fs/microsd/vtol_param_backup
