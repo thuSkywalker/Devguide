@@ -163,7 +163,6 @@ Developers working on Raspberry Pi hardware should download the RPi Linux toolch
 ```sh
 git clone https://github.com/pixhawk/rpi_toolchain.git
 cd rpi_toolchain
-chmod +x install_cross.sh
 ./install_cross.sh
 ```
 You will be required to enter your password for toolchain installation to complete successfully.
