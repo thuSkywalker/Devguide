@@ -71,16 +71,18 @@ make posix_rpi2_release # for cross-compiler build
 ```
 
 The "mainapp" executable file is in the directory build_posix_rpi2_release/src/firmware/posix.
-Copy it over to the RPi, and run it with :
+Copy it over to the RPi (replace YOUR_PI with the IP or hostname of your RPi, [instructions how to access your RPi](hardware-pi2.md#developer-quick-start))
+
+```
+scp build_posix_rpi2_release/src/firmware/posix/mainapp pi@YOUR_PI:/home/pi/
+```
+
+And run it with :
 <div class="host-code"></div>
 
 ```sh
 ./mainapp
 ```
-
-<aside class="todo">
-Add Pi SCP/rsync auto-uploader instructions
-</aside>
 
 
 If you're building *directly* on the Pi, you will want the native build target (posix_pi2_default).
