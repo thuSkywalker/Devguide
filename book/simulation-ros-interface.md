@@ -24,6 +24,19 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 
 In case you would like to modify the Gazebo simulation to integrate sensors publishing directly to ROS topics e.g. the Gazebo ROS laser plugin, Gazebo must be launched with the appropriate ROS wrappers. To do this start the simulator with `no_sim=1`:
 
+The Gazebo ROS SITL simulation is known to work with Gazebo6 (Gazebo7 did NOT work) which can be installed via:
+
+```sh
+sudo apt-get install ros-indigo-gazebo6-ros
+```
+
+If other sensor models such as lasers are desired, the Gazebo plugins will also be needed:
+
+```sh
+sudo apt-get install ros-indigo-gazebo6-plugins
+```
+
+
 ```sh
 no_sim=1 make posix_sitl_default gazebo
 ```
@@ -64,5 +77,10 @@ export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:[PATH_TO_FIRMWARE]/Firmware/Tools/
 
 Now start Gazebo like you would when working with ROS and insert the Iris quadcopter model. Once the Iris is loaded it will automatically connect to the px4 app.
 ```sh
-roslauch gazebo_ros empty_world.launch
+roslaunch gazebo_ros empty_world.launch
+```
+
+Once the simulation has started, an Iris model can either be added manually via the GUI or programmatically like so:
+```sh
+rosrun gazebo_ros spawn_model -file iris.sdf -sdf -model iris
 ```
