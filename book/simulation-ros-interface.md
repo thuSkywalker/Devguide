@@ -20,9 +20,8 @@ To connect to localhost, use this URL:
 roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 ```
 
-## Launching Gazebo with ROS wrappers
 
-In case you would like to modify the Gazebo simulation to integrate sensors publishing directly to ROS topics e.g. the Gazebo ROS laser plugin, Gazebo must be launched with the appropriate ROS wrappers. To do this start the simulator with `no_sim=1`:
+## Installing Gazebo for ROS
 
 The Gazebo ROS SITL simulation is known to work with Gazebo6 (Gazebo7 did NOT work) which can be installed via:
 
@@ -36,6 +35,10 @@ If other sensor models such as lasers are desired, the Gazebo plugins will also 
 sudo apt-get install ros-indigo-gazebo6-plugins
 ```
 
+
+## Launching Gazebo with ROS wrappers
+
+In case you would like to modify the Gazebo simulation to integrate sensors publishing directly to ROS topics e.g. the Gazebo ROS laser plugin, Gazebo must be launched with the appropriate ROS wrappers. To do this start the simulator with `no_sim=1`:
 
 ```sh
 no_sim=1 make posix_sitl_default gazebo
