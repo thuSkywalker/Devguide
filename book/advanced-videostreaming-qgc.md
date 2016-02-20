@@ -193,9 +193,7 @@ If you cannnot start the stream on the Odroid with the uvch264s plugin, you can 
 ```
 Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running. If you get the system error: `Permission denied`, you might need to prepend `sudo` to the  command above. 
 
-If everything works, you should see the video stream on the bottom left corner in the flight-mode window of QGroundControl as shown in the screeenshot below. 
-
-![](images/videostreaming/qgc-screenshot.png)
+If everything works, you should see the video stream on the bottom left corner in the flight-mode window of QGroundControl as shown in the screeenshot below.
 
 If you click on the video stream, the satellite map is shown in the left bottom cornor and the video is shown in the whole background.
 
