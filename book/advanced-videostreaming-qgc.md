@@ -162,7 +162,7 @@ Where xxx.xxx.xxx.xxx is the IP address where QGC is running. Please be aware if
 
 If everything works, you should see the video stream on the bottom left corner in the flight-mode window of QGroundControl as shown in the screeenshot below. 
 
- <img src="images/videostreaming/qgc_screenshot.png" height="360" width="750"/>
+![](images/videostreaming/qgc_screenshot.png)
 
 If you click on the video stream, the satellite map is shown in the left bottom cornor and the video is shown in the whole background.
 
