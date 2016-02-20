@@ -65,7 +65,7 @@ cd ~/src/Firmware
 make posix gazebo_iris_opt_flow
 ```
 
-### Tailsitter VTOL
+### Standard VTOL
 
 <div class="host-code"></div>
 
