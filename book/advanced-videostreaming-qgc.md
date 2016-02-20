@@ -12,16 +12,15 @@ The whole hardware setup is shown in the figure below. It consists of the follow
 * Logitech camera C920
 * WiFi module TP-LINK TL-WN722N
 
+![](images/videostreaming/setup-whole.png)
 
-![](images/videostreaming/setup_whole.png)
 ## Install Linux environment in Odroid C1
 To install the Linux environment (Ubuntu 14.04), follow the instruction given in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1). In this tutorial it is also shown how to access the Odroid C1 with a UART cable and how to establish Ethernet connection.
 
 ## Set up alternative power connection
 The Odroid C1 can be powered via the 5V DC jack. If the Odroid is mounted on a drone, it is recommended to solder two pins next to the 5V DC jack by applying the through-hole soldering [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) as shown in the figure below. The power is delivered by connecting the DC voltage source (5 V) via a jumper cable (red in the image above) with the Odroid C1 and connect the ground of the circuit with a jumper cable (black in the image above) with a ground pin of the Odroid C1 in the example setup. 
 
-
-<img src="images/videostreaming/power_pins.png" height="170" width="200"/>
+![](images/videostreaming/power-pins.png)
 
 ## Enable WiFi connection for Odroid C1
 In this this tutorial the WiFi module TP-LINK TL-WN722N is used. To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
@@ -162,7 +161,7 @@ Where xxx.xxx.xxx.xxx is the IP address where QGC is running. Please be aware if
 
 If everything works, you should see the video stream on the bottom left corner in the flight-mode window of QGroundControl as shown in the screeenshot below. 
 
-![](images/videostreaming/qgc_screenshot.png)
+![](images/videostreaming/qgc-screenshot.png)
 
 If you click on the video stream, the satellite map is shown in the left bottom cornor and the video is shown in the whole background.
 
