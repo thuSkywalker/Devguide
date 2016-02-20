@@ -25,7 +25,7 @@ In this this tutorial the WiFi module TP-LINK TL-WN722N is used. To enable WiFi 
 ## Configure as WiFi Access Point
 This sections shows how to set up the Odroid C1 such that it is an access point. The content is taken from this [tutorial](https://pixhawk.org/peripherals/onboard_computers/access_point) with some small adaptions. To enable to stream the video from the camera via the Odroid C1 to the QGroundControl that runs on a computer it is not required to follow this section. However, it is shown here because setting up the Odroid C1 as an access point allows to use the system in a stand-alone fashion. The TP-LINK TL-WN722N is used as a WiFi module. In the ensuing steps it is assumed that the Odroid C1 assigns the name wlan0 to your WiFi module. Change all occurrences of wlan0 to the appropriate interface if different (e.g. wlan1).
 
-### Turning the vehicle's Onboard Computer into an Access Point
+### Onboard Computer as Access Point
 For a more in depth explanation, you can look at [RPI-Wireless-Hotspot](http://elinux.org/RPI-Wireless-Hotspot)
 
 Install the necessary software
@@ -36,7 +36,7 @@ Install the necessary software
 sudo apt-get install hostapd udhcpd
 ```
 
-Configure DHCP. Edit the file ```/etc/udhcpd.conf```
+Configure DHCP. Edit the file `/etc/udhcpd.conf`
 
 <div class="host-code"></div>
 
@@ -50,9 +50,9 @@ opt subnet 255.255.255.0
 opt router 192.168.2.1 # The Onboard Computer's IP address on wlan0 which we will set up shortly.
 opt lease 864000 # 10 day DHCP lease time in seconds
 ```
-All other "opt" entries should be disabled or configured properly if you know what you are doing.
+All other 'opt' entries should be disabled or configured properly if you know what you are doing.
 
-Edit the file /etc/default/udhcpd and change the line:
+Edit the file `/etc/default/udhcpd` and change the line:
 
 <div class="host-code"></div>
 
@@ -68,7 +68,7 @@ to
 #DHCPD_ENABLED="no"
 ```
 
-You will need to give the Onboard Computer a static IP address. Edit the file ```/etc/network/interfaces``` and replace the line 'iface wlan0 inet dhcp' (or 'iface wlan0 inet manual') to:
+You will need to give the Onboard Computer a static IP address. Edit the file `/etc/network/interfaces` and replace the line `iface wlan0 inet dhcp` (or `iface wlan0 inet manual`) to:
 
 ```sh
 auto wlan0
@@ -80,7 +80,7 @@ broadcast 192.168.2.255
 wireless-power off
 ```
 
-Disable the original (WiFi Client) auto configuration. Change the lines (they probably won't all be next to each other or may not even be there at all):
+Disable the original (WiFi Client) auto configuration. Change the lines (they probably will not be all next to each other or may not even be there at all):
 
 <div class="host-code"></div>
 
@@ -99,9 +99,9 @@ to:
 #iface default inet dhcp
 ```
 
-If you have followed the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) to set up the WiFi connection, you might have created the file /etc/network/intefaces.d/wlan0. Please comment out all lines in that file such that those configurations have no effect anymore.
+If you have followed the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) to set up the WiFi connection, you might have created the file `/etc/network/intefaces.d/wlan0`. Please comment out all lines in that file such that those configurations have no effect anymore.
 
-Configure HostAPD: To create a WPA-secured network, edit the file /etc/hostapd/hostapd.conf (create it if it doesn't exist) and add the following lines: 
+Configure HostAPD: To create a WPA-secured network, edit the file `/etc/hostapd/hostapd.conf` (create it if it does not exist) and add the following lines: 
 
 
 ```
@@ -191,7 +191,7 @@ If you cannnot start the stream on the Odroid with the uvch264s plugin, you can 
 ```sh
  gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,framerate=24/1 ! h264parse ! rtph264pay ! udpsink host=xxx.xxx.xxx.xxx port=5000
 ```
-Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running. Please be aware if you get a "system error: Permission denied", you might need to prepend "sudo" to the  command above. 
+Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running. If you get the system error: `Permission denied`, you might need to prepend `sudo` to the  command above. 
 
 If everything works, you should see the video stream on the bottom left corner in the flight-mode window of QGroundControl as shown in the screeenshot below. 
 
