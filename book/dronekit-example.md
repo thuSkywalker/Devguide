@@ -1,21 +1,21 @@
-# Using Dronekit to communicate with PX4
+# Using DroneKit to communicate with PX4
 
-[Dronekit](http://dronekit.io) helps you create powerful apps for UAVs. These apps run on a UAV’s Companion Computer, and augment the autopilot by performing tasks that are both computationally intensive and require a low-latency link (e.g. computer vision).
+[DroneKit](http://dronekit.io) helps you create powerful apps for UAVs. These apps run on a UAV’s Companion Computer, and augment the autopilot by performing tasks that are both computationally intensive and require a low-latency link (e.g. computer vision).
 
-Dronekit and PX4 are currently working on getting full compatibility. As of Dronekit-python 3.2.2 there is basic support for mission handling and vehicle monitoring.
+DroneKit and PX4 are currently working on getting full compatibility. As of DroneKit-python 2.2.0 there is basic support for mission handling and vehicle monitoring.
 
-## Setting up Dronekit with PX4
+## Setting up DroneKit with PX4
 
-Start by installing Dronekit-python from the current master.
+Start by installing DroneKit-python from the current master.
 
 ```sh
-git clone https://github.com/<your_fork_of_dronekit>/dronekit-python.git
+git clone https://github.com/dronekit/dronekit-python.git
 cd ./dronekit-python
 sudo python setup.py build
 sudo python setup.py install
 ```
 
-Create a new python file and import Dronekit, pymavlink and basic modules
+Create a new python file and import DroneKit, pymavlink and basic modules
 
 ```C
 # Import DroneKit-Python
@@ -49,12 +49,12 @@ print " Alt: %s" % vehicle.location.global_relative_frame.alt
 
 ## Full mission example
 
-The following python script shows a full mission example using Dronekit and PX4. Mode switching is not yet fully supported from Dronekit, we therefor send our own custom mode switching commands.
+The following python script shows a full mission example using DroneKit and PX4. Mode switching is not yet fully supported from DroneKit, we therefor send our own custom mode switching commands.
 
 ```C
 ################################################################################################
-# @File DronekitPX4.py
-# Example usage of Dronekit with PX4
+# @File DroneKitPX4.py
+# Example usage of DroneKit with PX4
 #
 # @author Sander Smeets <sander@droneslab.com>
 #
