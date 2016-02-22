@@ -53,6 +53,8 @@ This is the summary of the PX4 dev guide.
   * [Boats, Submarines, Blimps, Rovers](airframes-experimental.md)
 * Companion Computers
   * [Pixhawk family companion](pixhawk-companion-computer.md)
+* Robotics using DroneKit
+  * [Dronekit usage](dronekit-example.md)
 * Robotics using ROS
   * [Offboard Control from Linux](offboard-control.md)
   * [ROS Installation on RPi 2](ros-raspberrypi-installation.md)
