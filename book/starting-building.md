@@ -135,7 +135,6 @@ make posix_eagle_default
 make qurt_eagle_default
 ```
 
-<aside class="todo">
 To set up the development environment, see [Getting Started](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). You must be able to do a graphical install of the Hexagon tools so a remote shell to the machine will not work.
 Use the [HelloWorld](https://github.com/ATLFlight/ATLFlightDocs/blob/master/HelloWorld.md) and [dspal_tester](https://github.com/ATLFlight/dspal/blob/master/README.md) instructions to verify your setup is correct.
 
@@ -200,8 +199,6 @@ Go back to ADB shell and run mainapp:
 cd /home/linaro
 ./mainapp /usr/share/data/adsp/mainapp.config
 ```
-
-</aside>
 
 ## Compiling in a graphical IDE
 
