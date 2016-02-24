@@ -81,5 +81,6 @@ This is the summary of the PX4 dev guide.
   * [Camera Trigger](advanced-camera-trigger.md)
   * [EKF2 Log Replay](ekf2_log_replay.md)
   * [Snapdragon Advanced](advanced-snapdragon.md)
+    * [Accessing I/O Data] (advanced-accessing-io-data.md)
   * [Installing driver for Intel RealSense R200](advanced-realsense_intel.md)
   * [Licenses](advanced-licenses.md)
