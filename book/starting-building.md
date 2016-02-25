@@ -159,10 +159,11 @@ Make sure to set the following environment variables:
    export PATH=${HEXAGON_SDK_ROOT}/gcc-linaro-arm-linux-gnueabihf-4.8-2013.08_linux/bin:$PATH
 
 ```
-The qurt support has not yet been fully integrated upstream (WIP) so please use the following branch:
+
+Clone current master:
 
 ```sh
-git clone https://github.com/ATLFlight/Firmware -b integration3
+git clone https://github.com/PX4/Firmware.git
 cd Firmware
 make posix_eagle_default
 make qurt_eagle_default
