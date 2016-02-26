@@ -105,7 +105,7 @@ int px4_simple_app_main(int argc, char *argv[])
 The application is now complete and could be run, but it is not registered as NuttShell command yet. To enable the compilation of the application into the firmware, add it to the list of modules to build, which is here: 
 
   * Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
-  * Pixhawk v3: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
+  * Pixracer: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
 
 Create a new line for your application somewhere in the file:
 
