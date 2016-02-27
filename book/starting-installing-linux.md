@@ -129,7 +129,7 @@ Load the new configuration:
 source ~/.bashrc
 ```
 
-Copy the latest adsp image
+Copy the latest adsp image.
 
 <div class="host-code"></div>
 
