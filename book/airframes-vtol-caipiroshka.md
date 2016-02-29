@@ -72,11 +72,12 @@ Switch to the configuration section in [QGroundControl](qgroundcontrol-intro.md)
 ## Servo Connections
 The descriptions in the table below are referring to the user facing the front of the vehicle when it lies flat on its belly on a table.
 
-| Output | Actuator |
-| -- | -- | -- |
-| MAIN1 | 50 Hz | Left motor controller |
-| MAIN2 | 50 Hz | Right motor controller |
-| MAIN3 | 50 Hz | Empty |
-| MAIN4 | 50 Hz | Empty |
-| MAIN5 | 400 Hz | Left aileron servo |
-| MAIN6 | 400 Hz | Right aileron servo |
+| Output | Rate | Actuator |
+| --- | --- | --- |
+| MAIN1 | 400 Hz | Left motor controller |
+| MAIN2 | 400 Hz | Right motor controller |
+| MAIN3 | 400 Hz | Empty |
+| MAIN4 | 400 Hz | Empty |
+| MAIN5 | 50 Hz | Left aileron servo |
+| MAIN6 | 50 Hz | Right aileron servo |
+
