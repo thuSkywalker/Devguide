@@ -40,12 +40,81 @@ Then configure station mode:
 reboot
 ```
 
+## Update Android/Linux image
+
+For this step the Flight_BSP zipfile from Intrynsic is needed.
+
+Make sure the board can be found using adb:
+
+```
+adb devices
+```
+
+Then, reboot it into the fastboot bootloader:
+
+```
+adb reboot bootloader
+```
+
+Make sure the board can be found using fastboot:
+
+```
+fastboot devices
+```
+
+
+```
+unzip Flight_BSP_2.0_CS1.0.zip
+cd Flight_BSP_2.0_CS1.0/Images/
+chmod +x fastboot-all.sh
+./fastboot-all.sh
+```
+
 
 ## Troubleshooting
 
+### adb does not work
+
+- Make sure you are using a working Micro-USB cable.
+- Try a USB 2.0 port.
+- Try front and back ports of your computer.
+- Make sure you have the permissions correctly set up (check [this answer on StackOverflow](http://askubuntu.com/questions/461729/ubuntu-is-not-detecting-my-android-device#answer-644222)).
+
+### Board doesn't start / is boot-looping / is bricked
+
+If you can still connect to the board using the serial console and get to a prompt such as:
+
+```
+root@linaro-developer:~#
+```
+
+You can get into fastboot (bootloader) mode by entering:
+
+```
+reboot2fastboot
+```
+
+If the serial console is not possible, you can try to connect the Micro USB cable, and enter:
+
+```
+adb wait-for-device && adb reboot bootloader
+```
+
+Then power cycle the board. If you're lucky, adb manages to connect briefly and can send the board into fastboot.
+
+To check if it's in fastboot mode, use:
+
+```
+fastboot devices
+```
+
+Once you managed to get into fastboot mode, you can try [above teps](#update-androidlinux-image) to update the Android/Linux image.
+
+If you are unable to get into fastboot mode using the console or adb, you probably need to request request help from intrinsyc.
+
 ### No space left on device
 
-Sometimes make ***-load fails to upload:
+Sometimes ```make ***-load``` fails to upload:
 
 ```
 failed to copy 'mainapp' to '/home/linaro/mainapp': No space left on device

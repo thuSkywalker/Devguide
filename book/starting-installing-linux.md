@@ -129,20 +129,34 @@ source ~/.bashrc
 
 Now copy the latest adsp image to the board:
 
+<aside class="note">
+Before pushing the latest static image, make sure you are using an up-to-date BSP. Check the [advanced Snapdragon page](advanced-snapdragon.md#update-androidlinux-image) on how to do that.
+</aside>
+
 <div class="host-code"></div>
+
+Make sure, adb can access the device:
+
+```sh
+adb devices
+```
+
+If the device does not show up, check the [troubleshooting page](advanced-snapdragon.md#adb-does-not-work).
 
 ```sh
 unzip qcom_flight_controller_hexagon_sdk_add_on.zip
-cd images/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmware/
-adb push . /lib/firmware
+cd qcom_flight_controller_hexagon_sdk_add_on
+adb push images/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmware/ /lib/firmware
 ```
+
+If adb is not working
 
 Reboot the Snapdragon by power-cycling it. Now continue with [building and loading](starting-building.md) the code.
 
 #### References
 
-There is a an external guide for installing the toolchain at 
-[GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). The 
+There is a an external guide for installing the toolchain at
+[GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). The
 [HelloWorld](https://github.com/ATLFlight/HelloWorld) and [DSPAL tests](https://github.com/ATLFlight/dspal/tree/master/test/dspal_tester) can be used to validate your tools installation and DSP image.
 
 Messages from the DSP can be viewed using mini-dm.
