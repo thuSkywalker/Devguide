@@ -182,7 +182,7 @@ make libmainapp-load
 ```
 Or all in one line:
 ```sh
-make posix_eagle_default && (cd build_posix_eagle_default && make mainapp-load) && (make qurt_eagle_default && cd build_qurt_eagle_default && make libmainapp-load)
+make posix_eagle_default && (cd build_posix_eagle_default && make mainapp-load) && make qurt_eagle_default && (cd build_qurt_eagle_default && make libmainapp-load)
 ```
 
 Copy the startup files:
