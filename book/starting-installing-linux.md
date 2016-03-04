@@ -133,6 +133,16 @@ Now copy the latest adsp image to the board:
 Before pushing the latest static image, make sure you are using an up-to-date BSP. Check the [advanced Snapdragon page](advanced-snapdragon.md#update-androidlinux-image) on how to do that.
 </aside>
 
+<aside class="note">
+There is a HIGH CHANCE of bricking your board due to incompatible BSP / aDSP static image combinations. Make sure you have your work backed up. Make the change below NOW to prevent mishaps.
+</aside>
+
+On the Flight board, edit ```/etc/init/q6.conf``` script and comment out the line below which, if left in place, can cause the board to stall forever during the boot up process if the ADSP image loader fails to start. On P1 generation boards, this can cause a semi-permanent brick with no way to recover without a special tool.
+
+```sh
+# watch -n 1 --precise -g grep -m 1 "2" /sys/kernel/debug/msm_subsys/adsp && true
+```
+
 <div class="host-code"></div>
 
 Make sure, adb can access the device:
