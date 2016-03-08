@@ -187,7 +187,7 @@ make posix_eagle_default && (cd build_posix_eagle_default && make mainapp-load) 
 
 Copy the startup files:
 ```sh
-adb push posix-configs/eagle/flight/mainapp-flight.config /usr/share/data/adsp/mainapp.config
+adb push posix-configs/eagle/flight/mainapp-flight.config /home/linaro/mainapp.config
 adb push posix-configs/eagle/flight/px4-flight.config /usr/share/data/adsp/px4.config
 ```
 
@@ -199,7 +199,7 @@ ${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
 Go back to ADB shell and run mainapp:
 ```sh
 cd /home/linaro
-./mainapp /usr/share/data/adsp/mainapp.config
+./mainapp mainapp.config
 ```
 
 ## Compiling in a graphical IDE
