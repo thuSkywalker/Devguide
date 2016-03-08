@@ -110,8 +110,8 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 3.3V operation is workable for the 3DR GPS, so bench setups can be powered off J9. For flying vehicles the GPS power pin should be connected to pin 1 of J15 to power the GPS off 5V.
 
 | Snapdragon J9 Pin | Signal | Comment | 3DR GPS Pin
-| -- | -- | -- |
-| 1 | 3.3V | UNCONNECTED |
+| -- | -- | -- | -- |
+| 1 | 3.3V | UNCONNECTED | x |
 | 2 | UART2_TX | Output (3.3V) | 2 |
 | 3 | UART2_RX | Input (3.3V) | 3 |
 | 4 | I2C2_SDA | (3.3V) | 5 |
@@ -120,12 +120,12 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 
 | Snapdragon J15 Pin | Signal | Comment | 3DR GPS Pin
 | -- | -- | -- | -- |
-| 1 | 5.0V | 1 |
-| 2 | -- | UNCONNECTED | |
-| 3 | -- | UNCONNECTED | |
-| 4 | -- | UNCONNECTED | |
-| 5 | -- | UNCONNECTED | |
-| 6 | -- | UNCONNECTED | |
+| 1 | 5.0V |  | 1 |
+| 2 | -- | UNCONNECTED | x |
+| 3 | -- | UNCONNECTED | x |
+| 4 | -- | UNCONNECTED | x |
+| 5 | -- | UNCONNECTED | x |
+| 6 | -- | UNCONNECTED | x |
 
 ## Dimensions
 
