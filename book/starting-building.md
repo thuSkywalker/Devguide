@@ -16,6 +16,9 @@ The terminal starts in the home directory. We default to '~/src/Firmware' and cl
 mkdir -p ~/src
 cd ~/src
 git clone https://github.com/PX4/Firmware.git
+cd Firmware
+git submodule update --init --recursive
+cd ..
 ```
 Now its time to build the binaries by compiling the source code. But before going straight to the hardware, a [simulation run](simulation-sitl.md) is recommended as the next step. Users preferring to work in a graphical development environment should continue with the next section.
 
@@ -144,7 +147,7 @@ Get the [SDK](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-linux.
 ```sh
 git clone https://github.com/ATLFlight/cross_toolchain.git
 mv qualcomm_hexagon_sdk_2_0_eval.bin cross_toolchain/downloads
-mv Hexagon.LLVM_linux_installer_7.2.10.bin.bin cross_toolchain/downloads
+mv Hexagon.LLVM_linux_installer_7.2.10.bin cross_toolchain/downloads
 ./cross_toolchain/install.sh
 ```
 
