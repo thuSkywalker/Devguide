@@ -91,32 +91,42 @@ Developers working on Snapdragon Flight should request the Hexagon 7.2.10 Linux 
 If you are part of ETH Zurich contact the maintainer for information about access to the SDK files instead.
 </aside>
 
-Hexagon SDK:
+After downloading the Hexagon SDK and Hexagon Toolchain, clone this repository:
 
 <div class="host-code"></div>
 
 ```sh
-chmod u+x qualcomm_hexagon_sdk_2_0_eval.bin
-./qualcomm_hexagon_sdk_2_0_eval.bin
+git clone https://github.com/ATLFlight/cross_toolchain.git
 ```
 
-Hexagon Toolchain:
+Now move the following files in the download folder of the cross toolchain as follows:
+
 <div class="host-code"></div>
 
 ```sh
-tar xf Hexagon.LNX.7.2\ Installer-07210.1.tar
-chmod u+x Hexagon.LLVM_linux_installer_7.2.10.bin
-./Hexagon.LLVM_linux_installer_7.2.10.bin
+mv qualcomm_hexagon_sdk_2_0_eval.bin cross_toolchain/downloads
+mv Hexagon.LNX.7.2 Installer-07210.1.tar cross_toolchain/downloads
 ```
+Install the toolchain and SDK like this:
+
+<div class="host-code"></div>
+
+```sh
+cd cross_toolchain
+./install.sh
+```
+
+Follow the instructions to set up the development environment. If you accept all the install defaults you can at any time re-run the following to get the env setup. It will only install missing components.
 
 After this the tools and SDK will have been installed to "$HOME/Qualcomm/...". Append the following to your ~/.bashrc:
 
 <div class="host-code"></div>
 
 ```sh
-export HEXAGON_TOOLS_ROOT="$HOME/Qualcomm/HEXAGON_Tools/7.2.10/Tools"
-export HEXAGON_SDK_ROOT="$HOME/Qualcomm/Hexagon_SDK/2.0"
-if [[ ":$PATH:" != *":$HEXAGON_TOOLS_ROOT/bin/:"* ]]; then PATH="$PATH:$HEXAGON_TOOLS_ROOT/bin"; fi
+export HEXAGON_SDK_ROOT="${HOME}/Qualcomm/Hexagon_SDK/2.0"
+export HEXAGON_TOOLS_ROOT="${HOME}/Qualcomm/HEXAGON_Tools/7.2.10/Tools"
+export HEXAGON_ARM_SYSROOT="${HOME}/Qualcomm/Hexagon_SDK/2.0/sysroot"
+export PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-arm-linux-gnueabihf-4.8-2013.08_linux/bin:$PATH"
 ```
 
 Load the new configuration:
