@@ -143,15 +143,21 @@ On the Flight board, edit ```/etc/init/q6.conf``` script and comment out the lin
 # watch -n 1 --precise -g grep -m 1 "2" /sys/kernel/debug/msm_subsys/adsp && true
 ```
 
-<div class="host-code"></div>
-
 Make sure, adb can access the device:
+
+<aside class="note">
+Power the board through the external power and connect the USB cable, the indicator LED should be blue and heart-beating.
+</aside>
+
+<div class="host-code"></div>
 
 ```sh
 adb devices
 ```
 
 If the device does not show up, check the [troubleshooting page](advanced-snapdragon.md#adb-does-not-work).
+
+<div class="host-code"></div>
 
 ```sh
 unzip qcom_flight_controller_hexagon_sdk_add_on.zip
