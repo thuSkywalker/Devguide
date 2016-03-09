@@ -171,7 +171,6 @@ If the device does not show up, check the [troubleshooting page](advanced-snapdr
 
 ```sh
 unzip qcom_flight_controller_hexagon_sdk_add_on.zip
-cd qcom_flight_controller_hexagon_sdk_add_on
 adb push images/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmware/ /lib/firmware
 ```
 
