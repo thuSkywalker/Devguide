@@ -107,8 +107,6 @@ Run it directly with :
 
 A successful build followed by executing mainapp will give you this :
 
-<div class="host-code"></div>
-
 ```sh
 [init] shell id: 1996021760
 [init] task name: mainapp
@@ -138,46 +136,52 @@ make posix_eagle_default
 make qurt_eagle_default
 ```
 
-To set up the development environment, see [Toolchain Installation](starting-installing.md). You must be able to do a graphical install of the Hexagon tools so a remote shell to the machine will not work.
-Use the [HelloWorld](https://github.com/ATLFlight/ATLFlightDocs/blob/master/HelloWorld.md) and [dspal_tester](https://github.com/ATLFlight/dspal/blob/master/README.md) instructions to verify your setup is correct.
+To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
 
-Clone current master:
+<div class="host-code"></div>
 
-```sh
-git clone https://github.com/PX4/Firmware.git
-cd Firmware
-make posix_eagle_default
-make qurt_eagle_default
-```
-
-To load the SW on the device, connect via USB cable and make sure the device is booted. In another terminal do:
 ```sh
 adb shell
 ```
-If that works, go back to previous terminal:
+
+Go back to previous terminal and upload:
+
+<div class="host-code"></div>
+
 ```sh
 cd build_posix_eagle_default
 make mainapp-load
 cd build_qurt_eagle_default
 make libmainapp-load
 ```
+
 Or all in one line:
+
+<div class="host-code"></div>
+
 ```sh
 make posix_eagle_default && (cd build_posix_eagle_default && make mainapp-load) && make qurt_eagle_default && (cd build_qurt_eagle_default && make libmainapp-load)
 ```
 
 Copy the startup files:
+
+<div class="host-code"></div>
+
 ```sh
 adb push posix-configs/eagle/flight/mainapp-flight.config /home/linaro/mainapp.config
 adb push posix-configs/eagle/flight/px4-flight.config /usr/share/data/adsp/px4.config
 ```
 
 Run the DSP debug monitor:
+
+<div class="host-code"></div>
+
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
 ```
 
 Go back to ADB shell and run mainapp:
+
 ```sh
 cd /home/linaro
 ./mainapp mainapp.config
