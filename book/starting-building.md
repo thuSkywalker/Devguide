@@ -172,6 +172,14 @@ adb push posix-configs/eagle/flight/mainapp-flight.config /home/linaro/mainapp.c
 adb push posix-configs/eagle/flight/px4-flight.config /usr/share/data/adsp/px4.config
 ```
 
+Copy the mixer file to the DSP file system:
+
+<div class="host-code"></div>
+
+```
+adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
+```
+
 Run the DSP debug monitor:
 
 <div class="host-code"></div>
