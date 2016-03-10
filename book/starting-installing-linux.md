@@ -140,7 +140,7 @@ source ~/.bashrc
 Now copy the latest adsp image to the board:
 
 <aside class="note">
-Before pushing the latest static image, make sure you are using an up-to-date BSP. Check the [advanced Snapdragon page](advanced-snapdragon.md#update-androidlinux-image) on how to do that.
+Before pushing the latest static image, make sure you are using an up-to-date BSP. Check the [advanced Snapdragon page](http://dev.px4.io/advanced-snapdragon.md#update-androidlinux-image) on how to do that.
 </aside>
 
 <aside class="note">
