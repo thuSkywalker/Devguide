@@ -16,6 +16,9 @@ The terminal starts in the home directory. We default to '~/src/Firmware' and cl
 mkdir -p ~/src
 cd ~/src
 git clone https://github.com/PX4/Firmware.git
+cd Firmware
+git submodule update --init --recursive
+cd ..
 ```
 Now its time to build the binaries by compiling the source code. But before going straight to the hardware, a [simulation run](simulation-sitl.md) is recommended as the next step. Users preferring to work in a graphical development environment should continue with the next section.
 
@@ -73,7 +76,7 @@ make posix_rpi2_release # for cross-compiler build
 The "mainapp" executable file is in the directory build_posix_rpi2_release/src/firmware/posix.
 Copy it over to the RPi (replace YOUR_PI with the IP or hostname of your RPi, [instructions how to access your RPi](hardware-pi2.md#developer-quick-start))
 
-```
+```sh
 scp build_posix_rpi2_release/src/firmware/posix/mainapp pi@YOUR_PI:/home/pi/
 ```
 
@@ -104,8 +107,6 @@ Run it directly with :
 
 A successful build followed by executing mainapp will give you this :
 
-<div class="host-code"></div>
-
 ```sh
 [init] shell id: 1996021760
 [init] task name: mainapp
@@ -135,73 +136,64 @@ make posix_eagle_default
 make qurt_eagle_default
 ```
 
-<aside class="todo">
-To set up the development environment, see [Getting Started](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). You must be able to do a graphical install of the Hexagon tools so a remote shell to the machine will not work.
-Use the [HelloWorld](https://github.com/ATLFlight/ATLFlightDocs/blob/master/HelloWorld.md) and [dspal_tester](https://github.com/ATLFlight/dspal/blob/master/README.md) instructions to verify your setup is correct.
+To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
 
-The quick instructions are:
+<div class="host-code"></div>
 
-Get the [SDK](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-linux.bin) and Hexagon tools 7.2.10 installers.
-```
-git clone https://github.com/ATLFlight/cross_toolchain.git
-mv qualcomm_hexagon_sdk_2_0_eval.bin cross_toolchain/downloads
-mv Hexagon.LLVM_linux_installer_7.2.10.bin.bin cross_toolchain/downloads
-./cross_toolchain/install.sh
-```
-
-Follow the instructions to set up the development environment. If you accept all the installl defaults you can at any time re-run the following to get the env setup. It will only install missing components.
-```
-./cross_toolchain/install.sh
-
-Make sure to set the following environment variables:
-   export HEXAGON_SDK_ROOT=${HOME}/Qualcomm/Hexagon_SDK/2.0
-   export HEXAGON_TOOLS_ROOT=${HOME}/Qualcomm/HEXAGON_Tools/7.2.10/Tools
-   export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/Hexagon_SDK/2.0/sysroot
-   export PATH=${HEXAGON_SDK_ROOT}/gcc-linaro-arm-linux-gnueabihf-4.8-2013.08_linux/bin:$PATH
-
-```
-The qurt support has not yet been fully integrated upstream (WIP) so please use the following branch:
-```
-git clone https://github.com/ATLFlight/Firmware -b integration3
-cd Firmware
-make posix_eagle_default
-make qurt_eagle_default
-```
-
-To load the SW on the device, connect via USB cable and make sure the device is booted. In another terminal do:
-```
+```sh
 adb shell
 ```
-If that works, go back to previous terminal:
-```
+
+Go back to previous terminal and upload:
+
+<div class="host-code"></div>
+
+```sh
 cd build_posix_eagle_default
 make mainapp-load
 cd build_qurt_eagle_default
 make libmainapp-load
 ```
+
 Or all in one line:
-```
-make posix_eagle_default && (cd build_posix_eagle_default && make mainapp-load) && (make qurt_eagle_default && cd build_qurt_eagle_default && make libmainapp-load)
+
+<div class="host-code"></div>
+
+```sh
+make posix_eagle_default && (cd build_posix_eagle_default && make mainapp-load) && make qurt_eagle_default && (cd build_qurt_eagle_default && make libmainapp-load)
 ```
 
 Copy the startup files:
-```
-adb push posix-configs/eagle/flight/mainapp-flight.config /usr/share/data/adsp/mainapp.config
+
+<div class="host-code"></div>
+
+```sh
+adb push posix-configs/eagle/flight/mainapp-flight.config /home/linaro/mainapp.config
 adb push posix-configs/eagle/flight/px4-flight.config /usr/share/data/adsp/px4.config
 ```
 
-Run the DSP debug monitor:
+Copy the mixer file to the DSP file system:
+
+<div class="host-code"></div>
+
 ```
+adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
+```
+
+Run the DSP debug monitor:
+
+<div class="host-code"></div>
+
+```sh
 ${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
 ```
 
 Go back to ADB shell and run mainapp:
-```
-cd /home/linaro
-./mainapp /usr/share/data/adsp/mainapp.config
-```
 
-</aside>
+```sh
+cd /home/linaro
+./mainapp mainapp.config
+```
 
 ## Compiling in a graphical IDE
 

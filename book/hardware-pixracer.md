@@ -10,7 +10,7 @@ The Pixhawk XRacer board family is optimized for small racing quads and planes. 
 The main hardware documentation is here: https://pixhawk.org/modules/pixracer
 </aside>
 
-  * Standard FPV form factor: 40x40 mm with standard 32.5 mm hole pattern
+  * Standard FPV form factor: 36x36 mm with standard 30.5 mm hole pattern
   * Wifi telemetry and software upgrade
   * Invensense ICM-20608 Accel / Gyro (4 KHz) / MPU9250 Accel / Gyro / Mag (4 KHz)
   * HMC5983 magnetometer with temperature compensation

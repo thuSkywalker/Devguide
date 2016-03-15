@@ -12,7 +12,7 @@ After installing Homebrew, copy these commands to your shell:
 brew tap PX4/homebrew-px4
 brew tap osrf/simulation
 brew update
-brew install genromfs kconfig-frontends gcc-arm-none-eabi
+brew install git bash-completion genromfs kconfig-frontends gcc-arm-none-eabi
 brew install astyle cmake ninja
 # simulation tools
 brew install ant graphviz sdformat3 protobuf eigen
@@ -29,25 +29,7 @@ sudo pip install pyserial empy
 
 ## Snapdragon Flight
 
-Developers working on Snapdragon Flight should download the Hexagon Linux toolchain and execute the commands below:
-
-<div class="host-code"></div>
-
-```sh
-cp ~/Downloads/Hexagon.LNX.7.2\ Installer-07210.1.tar .
-vagrant up
-vagrant ssh
-```
-
-Switch to the Firmware directory:
-
-<div class="host-code"></div>
-
-```sh
-cd /Firmware
-```
-
-Then follow the instructions for the Linux installation: 
+Developers working on Snapdragon Flight should use an Ubuntu VM for the time being and follow the Linux instructions. Qualcomm provides reliable tooling for Ubuntu exclusively. The PX4 dev team had the most consistent experience with VMWare, in particular when it comes to USB stability.
 
 ## Simulation
 

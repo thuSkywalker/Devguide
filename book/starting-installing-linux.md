@@ -69,11 +69,7 @@ If the resulting `gcc-arm-none-eabi` version produces build errors for PX4/Firmw
 
 ### Snapdragon Flight
 
-<aside class="tip">
-If you are part of the core PX4 dev team contact maintainer for information about access to the SDK files.
-</aside>
-
-#### ADB installation
+#### Toolchain installation
 
 First add the official Ubuntu tablet team repository, then install ADB and the arm cross toolchain.
 
@@ -86,39 +82,51 @@ sudo add-apt-repository ppa:phablet-team/tools && sudo apt-get update -y
 <div class="host-code"></div>
 
 ```sh
-sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf android-tools-adb android-tools-fastboot -y
+sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf android-tools-adb android-tools-fastboot fakechroot fakeroot -y
 ```
 
-Developers working on Snapdragon Flight should request the Hexagon 7.2.10 Linux toolchain and 2.0 SDK for Linux from [here](https://developer.qualcomm.com/software/hexagon-dsp-sdk/application) and execute the commands below. The installation guide will come up, leave everything at default by just continuing to press enter.
+Developers working on Snapdragon Flight should request the Hexagon 7.2.10 Linux toolchain and the Hexagon 2.0 SDK for Linux from [here](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tool-request) and execute the commands below. The installation guide will come up, leave everything at default by just continuing to press enter.
 
-Hexagon SDK:
+<aside class="tip">
+If you are part of ETH Zurich contact the maintainer for information about access to the SDK files instead.
+</aside>
+
+After downloading the Hexagon SDK and Hexagon Toolchain, clone this repository:
 
 <div class="host-code"></div>
 
 ```sh
-chmod u+x qualcomm_hexagon_sdk_2_0_eval.bin
-./qualcomm_hexagon_sdk_2_0_eval.bin
+git clone https://github.com/ATLFlight/cross_toolchain.git
 ```
 
-Developers working on Snapdragon Flight should download the Hexagon Linux toolchain and execute the commands below. The installation guide will come up, leave everything at default by just continuing to press enter.
+Now move the following files in the download folder of the cross toolchain as follows:
 
-Hexagon Tools:
 <div class="host-code"></div>
 
 ```sh
-tar xf Hexagon.LNX.7.2\ Installer-07210.1.tar
-chmod u+x Hexagon.LLVM_linux_installer_7.2.10.bin
-./Hexagon.LLVM_linux_installer_7.2.10.bin
+mv qualcomm_hexagon_sdk_2_0_eval.bin cross_toolchain/downloads
+mv Hexagon.LNX.7.2 Installer-07210.1.tar cross_toolchain/downloads
 ```
+Install the toolchain and SDK like this:
+
+<div class="host-code"></div>
+
+```sh
+cd cross_toolchain
+./install.sh
+```
+
+Follow the instructions to set up the development environment. If you accept all the install defaults you can at any time re-run the following to get the env setup. It will only install missing components.
 
 After this the tools and SDK will have been installed to "$HOME/Qualcomm/...". Append the following to your ~/.bashrc:
 
 <div class="host-code"></div>
 
 ```sh
-export HEXAGON_TOOLS_ROOT="$HOME/Qualcomm/HEXAGON_Tools/7.2.10/Tools"
-export HEXAGON_SDK_ROOT="$HOME/Qualcomm/Hexagon_SDK/2.0"
-if [[ ":$PATH:" != *":$HEXAGON_TOOLS_ROOT/bin/:"* ]]; then PATH="$PATH:$HEXAGON_TOOLS_ROOT/bin"; fi
+export HEXAGON_SDK_ROOT="${HOME}/Qualcomm/Hexagon_SDK/2.0"
+export HEXAGON_TOOLS_ROOT="${HOME}/Qualcomm/HEXAGON_Tools/7.2.10/Tools"
+export HEXAGON_ARM_SYSROOT="${HOME}/Qualcomm/Hexagon_SDK/2.0/sysroot"
+export PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-arm-linux-gnueabihf-4.8-2013.08_linux/bin:$PATH"
 ```
 
 Load the new configuration:
@@ -129,22 +137,68 @@ Load the new configuration:
 source ~/.bashrc
 ```
 
-Copy the latest adsp image
+Now copy the latest adsp image to the board:
+
+<aside class="note">
+Before pushing the latest static image, make sure you are using an up-to-date BSP. Check the [advanced Snapdragon page](http://dev.px4.io/advanced-snapdragon.html#update-androidlinux-image) on how to do that.
+</aside>
+
+<aside class="note">
+There is a HIGH CHANCE of bricking your board due to incompatible BSP / aDSP static image combinations. Make sure you have your work backed up. Make the change below NOW to prevent mishaps.
+</aside>
+
+On the Flight board, edit ```/etc/init/q6.conf``` script and comment out the line below which, if left in place, can cause the board to stall forever during the boot up process if the ADSP image loader fails to start. On P1 generation boards, this can cause a semi-permanent brick with no way to recover without a special tool. This is the line to comment or remove:
+
+```sh
+# watch -n 1 --precise -g grep -m 1 "2" /sys/kernel/debug/msm_subsys/adsp && true
+```
+
+To do this, load the file locally:
+```sh
+adb pull /etc/init/q6.conf
+```
+
+Edit it:
+
+```sh
+gedit q6.conf
+```
+
+And push it back:
+
+```sh
+adb push q6.conf /etc/init/q6.conf
+```
+
+Make sure, adb can access the device:
+
+<aside class="note">
+Power the board through the external power and connect the USB cable, the indicator LED should be blue and heart-beating.
+</aside>
+
+<div class="host-code"></div>
+
+```sh
+adb devices
+```
+
+If the device does not show up, check the [troubleshooting page](advanced-snapdragon.md#adb-does-not-work).
 
 <div class="host-code"></div>
 
 ```sh
 unzip qcom_flight_controller_hexagon_sdk_add_on.zip
-cd images/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmware/
-adb push . /lib/firmware
+adb push images/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmware/ /lib/firmware
 ```
 
-Reboot the snapdragon
+If adb is not working
+
+Reboot the Snapdragon by power-cycling it. Now continue with [building and loading](starting-building.md) the code.
 
 #### References
 
-There is a an external guide for installing the toolchain at 
-[GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). The 
+There is a an external guide for installing the toolchain at
+[GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). The
 [HelloWorld](https://github.com/ATLFlight/HelloWorld) and [DSPAL tests](https://github.com/ATLFlight/dspal/tree/master/test/dspal_tester) can be used to validate your tools installation and DSP image.
 
 Messages from the DSP can be viewed using mini-dm.

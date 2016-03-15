@@ -40,12 +40,143 @@ Then configure station mode:
 reboot
 ```
 
+## Update Android/Linux image
+
+For this step the Flight_BSP zip file from Intrynsic is required. It can be obtained after registering using the board serial.
+
+### Setting up permissions
+
+This step is only required once.
+
+#### 1) Create a new permissions file
+
+```
+sudo -i gedit /etc/udev/rules.d/51-android.rules
+```
+
+paste this content, which enables most known devices for ADB access:
+
+```
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0bb4", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0e79", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0502", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0b05", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="413c", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0489", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="091e", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0bb4", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="12d1", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="24e3", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2116", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0482", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="17ef", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1004", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="22b8", MODE="0666", GROUP="plugdev"    
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0409", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2080", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0955", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2257", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="10a9", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1d4d", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0471", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="04da", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="05c6", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1f53", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="04e8", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="04dd", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0fce", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0930", MODE="0666", GROUP="plugdev"  
+SUBSYSTEM=="usb", ATTRS{idVendor}=="19d2", MODE="0666", GROUP="plugdev"
+```
+
+Set up the right permissions for the file:
+
+```
+sudo chmod a+r /etc/udev/rules.d/51-android.rules
+```
+
+Restart the deamon
+
+```
+sudo udevadm control --reload-rules
+sudo service udev restart
+sudo udevadm trigger
+```
+
+### Upgrading the board image
+
+Make sure the board can be found using adb:
+
+```
+adb devices
+```
+
+Then, reboot it into the fastboot bootloader:
+
+```
+adb reboot bootloader
+```
+
+Make sure the board can be found using fastboot:
+
+```
+fastboot devices
+```
+
+
+```
+unzip Flight_BSP_2.0_CS1.0.zip
+cd Flight_BSP_2.0_CS1.0/Images/
+chmod +x fastboot-all.sh
+./fastboot-all.sh
+```
+
 
 ## Troubleshooting
 
+### adb does not work
+
+- Make sure you are using a working Micro-USB cable.
+- Try a USB 2.0 port.
+- Try front and back ports of your computer.
+- Make sure you have the permissions correctly set up (check [this answer on StackOverflow](http://askubuntu.com/questions/461729/ubuntu-is-not-detecting-my-android-device#answer-644222)).
+
+### Board doesn't start / is boot-looping / is bricked
+
+If you can still connect to the board using the serial console and get to a prompt such as:
+
+```
+root@linaro-developer:~#
+```
+
+You can get into fastboot (bootloader) mode by entering:
+
+```
+reboot2fastboot
+```
+
+If the serial console is not possible, you can try to connect the Micro USB cable, and enter:
+
+```
+adb wait-for-device && adb reboot bootloader
+```
+
+Then power cycle the board. If you're lucky, adb manages to connect briefly and can send the board into fastboot.
+
+To check if it's in fastboot mode, use:
+
+```
+fastboot devices
+```
+
+Once you managed to get into fastboot mode, you can try [above teps](#update-androidlinux-image) to update the Android/Linux image.
+
+If you are unable to get into fastboot mode using the console or adb, you probably need to request request help from intrinsyc.
+
 ### No space left on device
 
-Sometimes make ***-load fails to upload:
+Sometimes ```make ***-load``` fails to upload:
 
 ```
 failed to copy 'mainapp' to '/home/linaro/mainapp': No space left on device

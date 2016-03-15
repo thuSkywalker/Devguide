@@ -8,12 +8,19 @@ In addition to a pulse being sent out, a MAVLink message is published containing
 a sequence number (thus the current session's image sequence number) and the
 corresponding time stamp.
 
+Three different modes are supported:
+* `TRIG_MODE` 1 works like a basic intervalometer that can be enabled and disabled by calling in the system console `camera_trigger enable` or `camera_trigger disable`, respectively. Repeated enabling time-shifts the intervals to match the latest call.
+* `TRIG_MODE` 2 switches the intervalometer constantly on.
+* `TRIG_MODE` 3 triggers based on distance. A shot is taken every time the set horizontal distance is exceeded. The minimum time interval between two shots is however limited by the set triggering interval.
+
+In `TRIG_MODE` 0 the triggering is off.
+
 The full list of parameters pertaining to the camera trigger module can be found
 on the [parameter reference](https://pixhawk.org/firmware/parameters#camera_trigger) page.
 
 <aside class="tip">
 If it is your first time enabling the camera trigger app, remember to reboot
-after changing the `TRIG_MODE` parameter to either 1 or 2.
+after changing the `TRIG_MODE` parameter to either 1, 2 or 3.
 </aside>
 
 ## Camera-IMU sync example

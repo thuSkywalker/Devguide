@@ -22,13 +22,13 @@ Mac OS users should install gazebo 7. Linux users: If you installed a ROS versio
 
 ### Mac OS
 
-Mac OS requires Gazebo 7.
+Mac OS requires Gazebo 6.
 
 <div class="host-code"></div>
 
 ```sh
 # dependencies were already installed during the initial install
-brew install opencv gazebo7
+brew install opencv gazebo6
 ```
 
 ### Linux
@@ -65,7 +65,7 @@ cd ~/src/Firmware
 make posix gazebo_iris_opt_flow
 ```
 
-### Tailsitter VTOL
+### Standard VTOL
 
 <div class="host-code"></div>
 
