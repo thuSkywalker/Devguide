@@ -70,9 +70,15 @@ sudo apt-get install libyaml-cpp-dev
 ```
 
 To install OpenCV, flash the package (where to put?) to the snapdragon and install it using
+
+<div class="host-code"></div>
+
 ```sh
-adb push /path/to/file /home/linaro/ #on your pc
-dpkg -i opencv3_20160222-1_armhf.deb #on your snapdragon
+adb push /path/to/file /home/linaro/
+
+```
+```sh
+dpkg -i opencv3_20160222-1_armhf.deb
 ```
 
 ## Image publisher node
