@@ -50,8 +50,8 @@ Then clone the following four catkin packages and build again
 cd src
 git clone https://github.com/ros-perception/vision_opencv
 git clone https://github.com/ros-perception/image_common
-git clone https://github.com/ethz-ait/duo_vio.git
-git clone todo: snap_cam repo
+git clone https://github.com/ethz-ait/klt_feature_tracker.git
+git clone https://github.com/ChristophTobler/snap_cam.git
 ```
 
 
@@ -69,7 +69,7 @@ yaml-cpp
 sudo apt-get install libyaml-cpp-dev
 ```
 
-To install OpenCV, flash the package (where to put?) to the snapdragon and install it using
+To install OpenCV, copy the package (where to put?) to the snapdragon
 
 <div class="host-code"></div>
 
@@ -77,6 +77,7 @@ To install OpenCV, flash the package (where to put?) to the snapdragon and insta
 adb push /path/to/file /home/linaro/
 
 ```
+and install it using
 ```sh
 dpkg -i opencv3_20160222-1_armhf.deb
 ```
