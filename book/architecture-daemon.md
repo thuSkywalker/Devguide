@@ -1,6 +1,6 @@
 # Daemons
 
-A daemon is a process running in the background. In NuttX a daemon process is a task, in POSIX (Linux / Mac OS a daemon is a thread).
+A daemon is a process running in the background. In NuttX a daemon process is a task, in POSIX (Linux / Mac OS) a daemon is a thread.
 
 New daemons are created through the `px4_task_spawn()` command.
 
