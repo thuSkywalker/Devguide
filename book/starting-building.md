@@ -168,8 +168,8 @@ Copy the startup files:
 <div class="host-code"></div>
 
 ```sh
-adb push posix-configs/eagle/flight/mainapp-flight.config /home/linaro/mainapp.config
-adb push posix-configs/eagle/flight/px4-flight.config /usr/share/data/adsp/px4.config
+adb push posix-configs/eagle/flight/mainapp.config /home/linaro/mainapp.config
+adb push posix-configs/eagle/flight/px4.config /usr/share/data/adsp/px4.config
 ```
 
 Copy the mixer file to the DSP file system:
