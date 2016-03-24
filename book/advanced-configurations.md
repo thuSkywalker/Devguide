@@ -72,4 +72,45 @@ int32_t param = 0;
 param_get(param_find("PARAM_NAME"), &param);
 ```
 
+## Parameter Meta Data
+
+PX4 uses an extensive parameter meta data system to drive the user-facing presentation of parameters. Correct meta data is critical for good user experience in the ground station.
+
+A typical parameter meta data section will look like this:
+
+```C++
+/**
+ * Pitch P gain
+ *
+ * Pitch proportional gain, i.e. desired angular speed in rad/s for error 1 rad.
+ *
+ * @unit 1/s
+ * @min 0.0
+ * @max 10
+ * @decimal 2
+ * @increment 0.0005
+ * @reboot_required true
+ * @group Multicopter Attitude Control
+ */
+PARAM_DEFINE_FLOAT(MC_PITCH_P, 6.5f);
+```
+
+Where each line has this use:
+
+```C++
+/**
+ * <title>
+ *
+ * <longer description, can be multi-line>
+ *
+ * @unit <the unit, e.g. m for meters>
+ * @min <the minimum sane value. Can be overriden by the user>
+ * @max <the maximum sane value. Can be overriden by the user>
+ * @decimal <the minimum sane value. Can be overriden by the user>
+ * @increment <the "ticks" in which this value will increment in the UI>
+ * @reboot_required true <add this if changing the param requires a system restart>
+ * @group <a title for parameters which form a group>
+ */
+PARAM_DEFINE_FLOAT(MC_PITCH_P, 6.5f);
+```
 
