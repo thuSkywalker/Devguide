@@ -105,11 +105,24 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 
 ## Peripherals
 
+### UART to Pixracer / Pixfalcon Wiring
+
+This interface is used to leverage the Pixracer / Pixfalcon as I/O interface board. Connect to `TELEM1` Pixfalcon and to `TELEM2` on Pixracer.
+
+| Snapdragon J13 Pin | Signal | Comment | Pixfalcon / Pixracer Pin |
+| -- | -- | -- | -- |
+| 1 | 5V | Power for autopilot | 5V |
+| 2 | UART6_TX | Output (5V) TX -> RX | 3 |
+| 3 | UART6_RX | Input (5V) RX -> TX | 2 |
+| 4 | APQ_GPIO_29 | (5V) | Not connected |
+| 5 | GND | | 6 |
+| 6 | APQ_GPIO_30 | (5V) | Not connected |
+
 ### 3DR GPS Wiring
 
 3.3V operation is workable for the 3DR GPS, so bench setups can be powered off J9. For flying vehicles the GPS power pin should be connected to pin 1 of J15 to power the GPS off 5V.
 
-| Snapdragon J9 Pin | Signal | Comment | 3DR GPS Pin
+| Snapdragon J9 Pin | Signal | Comment | 3DR GPS Pin |
 | -- | -- | -- | -- |
 | 1 | 3.3V | UNCONNECTED | x |
 | 2 | UART2_TX | Output (3.3V) | 2 |
@@ -118,7 +131,7 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 | 5 | GND | | 6 |
 | 6 | I2C2_SCL | (3.3V) | 4 |
 
-| Snapdragon J15 Pin | Signal | Comment | 3DR GPS Pin
+| Snapdragon J15 Pin | Signal | Comment | 3DR GPS Pin |
 | -- | -- | -- | -- |
 | 1 | 5.0V |  | 1 |
 | 2 | -- | UNCONNECTED | x |
