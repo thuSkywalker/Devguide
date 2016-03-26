@@ -1,5 +1,23 @@
 # Snapdragon Advanced
 
+## Serial ports
+
+### Mapping
+The mapping of the serial ports is as follows:
+
+| Device           | Description                           |
+| ---------------- | ------------------------------------- |
+| ```/dev/tty-1``` | J15 (next to USB)                     |
+| ```/dev/tty-2``` | J13 (next to power module connector)  |
+| ```/dev/tty-3``` | J12 (next to J13)                     |
+| ```/dev/tty-4``` | J9 (next to J15)                      |
+
+### Use serial ports
+
+Not all POSIX calls are currently supported on QURT. Therefore, some custom ioctl are needed.
+
+The APIs to set up and use the UART are described in [dspal](https://github.com/PX4/dspal/blob/master/include/dev_fs_lib_serial.h).
+
 ## Wifi-settings
 
 <aside class="todo">These are notes for advanced developers.</aside>
