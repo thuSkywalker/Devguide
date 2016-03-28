@@ -22,7 +22,7 @@ More information about the Snapdragon Flight platform is at [Snapdragon-Flight-D
   * BT/WiFi: BT 4.0 and 2G/5G WiFi via QCA6234
     * 802.11n, 2×2 MIMO with 2 uCOAX connectors on-board for connection to external antenna
   * GPS: Telit Jupiter SE868 V2 module (use of an external u-Blox module is recommended by PX4 instead)
-    * uCOAX connector on-board for connection to external GPS patch antenna 
+    * uCOAX connector on-board for connection to external GPS patch antenna
     * CSR SiRFstarV @ 5Hz via UART
   * Accelerometer / Gyro / Mag: Invensense MPU-9250 9-Axis Sensor, 3x3mm QFN, on bus SPI1
   * Baro: Bosch BMP280 barometric pressure sensor, on bus I2C3
@@ -50,7 +50,20 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 
   * WLAN0, WLAN1 (+BT 4.0): U.FL connector: [Taoglas adhesive antenna (DigiKey)](http://www.digikey.com/product-detail/en/FXP840.07.0055B/931-1222-ND/3877414)
 
-### J9 / GPS
+
+### Connectors
+
+The mapping of the serial ports is as follows:
+
+| Device           | Description                           |
+| ---------------- | ------------------------------------- |
+| ```/dev/tty-1``` | J15 (next to USB)                     |
+| ```/dev/tty-2``` | J13 (next to power module connector)  |
+| ```/dev/tty-3``` | J12 (next to J13)                     |
+| ```/dev/tty-4``` | J9 (next to J15)                      |
+
+
+#### J9 / GPS
 
 | Pin | Signal | Comment |
 | -- | -- | -- |
@@ -61,7 +74,7 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 | 5 | GND | |
 | 6 | I2C2_SCL | (3.3V) |
 
-### J12 / Gimbal bus
+#### J12 / Gimbal bus
 
 | Pin | Signal | Comment |
 | -- | -- | -- |
@@ -72,7 +85,7 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 | 5 | GND | |
 | 6 | APQ_GPIO_48 | (3.3V) |
 
-### J13 / ESC bus
+#### J13 / ESC bus
 
 | Pin | Signal | Comment |
 | -- | -- | -- |
@@ -83,7 +96,7 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 | 5 | GND | |
 | 6 | APQ_GPIO_30 | (5V) |
 
-### J14 / Power
+#### J14 / Power
 
 | Pin | Signal | Comment |
 | -- | -- | -- |
@@ -92,7 +105,7 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 | 3 | I2C3_SCL | (5V) |
 | 4 | I2C3_SDA | (5V) |
 
-### J15 / Radio Receiver / Sensors
+#### J15 / Radio Receiver / Sensors
 
 | Pin | Signal | Comment |
 | -- | -- | -- |
@@ -118,27 +131,18 @@ This interface is used to leverage the Pixracer / Pixfalcon as I/O interface boa
 | 5 | GND | | 6 |
 | 6 | APQ_GPIO_30 | (5V) | Not connected |
 
-### 3DR GPS Wiring
+### GPS Wiring
 
-3.3V operation is workable for the 3DR GPS, so bench setups can be powered off J9. For flying vehicles the GPS power pin should be connected to pin 1 of J15 to power the GPS off 5V.
+Even though the 3DR GPS is described to have a 5v input, operation with 3.3V seems to work fine. (The built-in regulator MIC5205 has a minimum operating voltage of 2.5v.)
 
-| Snapdragon J9 Pin | Signal | Comment | 3DR GPS Pin |
-| -- | -- | -- | -- |
-| 1 | 3.3V | UNCONNECTED | x |
-| 2 | UART2_TX | Output (3.3V) | 2 |
-| 3 | UART2_RX | Input (3.3V) | 3 |
-| 4 | I2C2_SDA | (3.3V) | 5 |
-| 5 | GND | | 6 |
-| 6 | I2C2_SCL | (3.3V) | 4 |
-
-| Snapdragon J15 Pin | Signal | Comment | 3DR GPS Pin |
-| -- | -- | -- | -- |
-| 1 | 5.0V |  | 1 |
-| 2 | -- | UNCONNECTED | x |
-| 3 | -- | UNCONNECTED | x |
-| 4 | -- | UNCONNECTED | x |
-| 5 | -- | UNCONNECTED | x |
-| 6 | -- | UNCONNECTED | x |
+| Snapdragon J9 Pin | Signal   | Comment       | 3DR GPS 6pin/4pin  | Pixfalcon GPS pin |
+| ----------------- | ---------| ------------- | ------------------ | ----------------- |
+| 1                 | 3.3V     | (3.3V)        | 1                  | 4                 |
+| 2                 | UART2_TX | Output (3.3V) | 2/-                | 3                 |
+| 3                 | UART2_RX | Input (3.3V)  | 3/-                | 2                 |
+| 4                 | I2C2_SDA | (3.3V)        | -/3                | 5                 |
+| 5                 | GND      |               | 6/-                | 1                 |
+| 6                 | I2C2_SCL | (3.3V)        | -/2                | 6                 |
 
 ## Dimensions
 
