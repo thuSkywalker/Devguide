@@ -53,7 +53,7 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 
 ### Connectors
 
-The mapping of the serial ports is as follows:
+The default mapping of the serial ports is as follows:
 
 | Device           | Description                           |
 | ---------------- | ------------------------------------- |
@@ -62,39 +62,45 @@ The mapping of the serial ports is as follows:
 | ```/dev/tty-3``` | J12 (next to J13)                     |
 | ```/dev/tty-4``` | J9 (next to J15)                      |
 
+For a custom UART to BAM mapping, create a file called "blsp.config" and adb push it to ```/usr/share/data/adsp```. E.g., to keep the default mapping, your "blsp.config" should look like:
+
+tty-1 bam-9  
+tty-2 bam-8  
+tty-3 bam-6  
+tty-4 bam-2  
 
 #### J9 / GPS
 
-| Pin | Signal | Comment |
-| -- | -- | -- |
-| 1 | 3.3V | |
-| 2 | UART2_TX | Output (3.3V) |
-| 3 | UART2_RX | Input (3.3V) |
-| 4 | I2C2_SDA | (3.3V) |
-| 5 | GND | |
-| 6 | I2C2_SCL | (3.3V) |
+| Pin | 2-wire UART + I2C | SPI | Comment |
+| -- | -- | -- | -- |
+| 1 | 3.3V | 3.3V | 3.3V |
+| 2 | UART2_TX | SPI2_MOSI | Output (3.3V) |
+| 3 | UART2_RX | SPI2_MISO | Input (3.3V) |
+| 4 | I2C2_SDA | SPI2_CS | (3.3V) |
+| 5 | GND | GND | |
+| 6 | I2C2_SCL | SPI2_CLK | (3.3V) |
 
 #### J12 / Gimbal bus
 
-| Pin | Signal | Comment |
-| -- | -- | -- |
-| 1 | 3.3V | |
-| 2 | UART8_TX | Output (3.3V) |
-| 3 | UART8_RX | Input (3.3V) |
-| 4 | APQ_GPIO_47 | (3.3V) |
-| 5 | GND | |
-| 6 | APQ_GPIO_48 | (3.3V) |
+| Pin | 2-wire UART + GPIO | SPI | Comment |
+| -- | -- | -- | -- |
+| 1 | 3.3V | 3.3V | |
+| 2 | UART8_TX | SPI8_MOSI | Output (3.3V) |
+| 3 | UART8_RX | SPI8_MISO | Input (3.3V) |
+| 4 | APQ_GPIO_47 | SPI8_CS | (3.3V) |
+| 5 | GND | GND | |
+| 6 | APQ_GPIO_48 | SPI8_CLK | (3.3V) |
 
 #### J13 / ESC bus
 
-| Pin | Signal | Comment |
-| -- | -- | -- |
-| 1 | 5V | |
-| 2 | UART6_TX | Output (5V) |
-| 3 | UART6_RX | Input (5V) |
-| 4 | APQ_GPIO_29 | (5V) |
-| 5 | GND | |
-| 6 | APQ_GPIO_30 | (5V) |
+| Pin | 2-wire UART + GPIO | SPI | Comment |
+| -- | -- | -- | -- |
+| 1 | 5V | 5V | |
+| 2 | UART6_TX | SPI6_MOSI | Output (5V) |
+| 3 | UART6_RX | SPI6_MISO |Input (5V) |
+| 4 | APQ_GPIO_29 | SPI6_CS | (5V) |
+| 5 | GND | GND | |
+| 6 | APQ_GPIO_30 | SPI6_CLK | (5V) |
 
 #### J14 / Power
 
@@ -107,14 +113,14 @@ The mapping of the serial ports is as follows:
 
 #### J15 / Radio Receiver / Sensors
 
-| Pin | Signal | Comment |
-| -- | -- | -- |
-| 1 | 3.3V | |
-| 2 | UART9_TX | Output |
-| 3 | UART9_RX | Input |
-| 4 | I2C9_SDA | |
-| 5 | GND | |
-| 6 | I2C9_SCL | |
+| Pin | 2-wire UART + I2C | SPI | Comment |
+| -- | -- | -- | -- |
+| 1 | 3.3V | 3.3V | |
+| 2 | UART9_TX | SPI9_MOSI | Output |
+| 3 | UART9_RX | SPI9_MISO | Input |
+| 4 | I2C9_SDA | SPI9_CS | |
+| 5 | GND | GND | |
+| 6 | I2C9_SCL | SPI9_CLK | |
 
 ## Peripherals
 
