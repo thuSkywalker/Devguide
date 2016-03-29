@@ -53,7 +53,7 @@ Although the Snapdragon uses DF13 connectors, the pinout is different from Pixha
 
 ### Connectors
 
-The mapping of the serial ports is as follows:
+The default mapping of the serial ports is as follows:
 
 | Device           | Description                           |
 | ---------------- | ------------------------------------- |
@@ -62,6 +62,12 @@ The mapping of the serial ports is as follows:
 | ```/dev/tty-3``` | J12 (next to J13)                     |
 | ```/dev/tty-4``` | J9 (next to J15)                      |
 
+For a custom UART to BAM mapping, create a file called "blsp.config" and adb push it to ```/usr/share/data/adsp```. E.g., to keep the default mapping, your "blsp.config" should look like:
+
+tty-1 bam-9  
+tty-2 bam-8  
+tty-3 bam-6  
+tty-4 bam-2  
 
 #### J9 / GPS
 
