@@ -104,3 +104,31 @@ Type `ls` to view the local file system, type `free` to see the remaining free R
 nsh> ls
 nsh> free
 ```
+
+
+# Snapdragon DSP Console
+When you are connected to your Snapdragon board via usb you have access to the px4 shell on the posix side of things.
+The interaction with the DSP side (QuRT) is enabled with the `qshell` posix app and its QuRT companion.
+
+With the Snapdragon connected via USB, open the mini-dm to see the output of the DSP:
+```
+${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
+```
+
+Run the main app on the linaro side:
+```
+cd /home/linaro
+./mainapp mainapp.config
+```
+
+You can now use all apps loaded on the DSP from the linaro shell with the following syntax:
+```
+pxh> qshell command [args ...]
+```
+
+For example, to see the available QuRT apps:
+```
+pxh> qshell list_tasks
+```
+
+The output of the executed command is displayed on the minidm.
