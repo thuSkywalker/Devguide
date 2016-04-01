@@ -132,8 +132,7 @@ The commands below build the targets for the Linux and the DSP side. Both execut
 
 ```sh
 cd Firmware
-make posix_eagle_default
-make qurt_eagle_default
+make eagle_default
 ```
 
 To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
@@ -149,30 +148,14 @@ Go back to previous terminal and upload:
 <div class="host-code"></div>
 
 ```sh
-cd build_posix_eagle_default
-make mainapp-load
-cd build_qurt_eagle_default
-make libmainapp-load
+make eagle_default upload
 ```
 
-Or all in one line:
+<aside class="note">
+Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device.
+</aside>
 
-<div class="host-code"></div>
-
-```sh
-make posix_eagle_default && (cd build_posix_eagle_default && make mainapp-load) && make qurt_eagle_default && (cd build_qurt_eagle_default && make libmainapp-load)
-```
-
-Copy the startup files:
-
-<div class="host-code"></div>
-
-```sh
-adb push posix-configs/eagle/flight/mainapp.config /home/linaro/mainapp.config
-adb push posix-configs/eagle/flight/px4.config /usr/share/data/adsp/px4.config
-```
-
-Copy the mixer file to the DSP file system:
+The mixer currently needs to be copied manually:
 
 <div class="host-code"></div>
 
