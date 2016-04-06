@@ -2,8 +2,6 @@
 
 Usage of the [Homebrew package manager](http://mxcl.github.com/homebrew/) for Mac OS X is recommended. The installation of Homebrew is quick and easy: [installation instructions](http://mxcl.github.com/homebrew/).
 
-## Pixhawk
-
 After installing Homebrew, copy these commands to your shell:
 
 <div class="host-code"></div>
@@ -15,7 +13,7 @@ brew update
 brew install git bash-completion genromfs kconfig-frontends gcc-arm-none-eabi
 brew install astyle cmake ninja
 # simulation tools
-brew install ant graphviz sdformat3 protobuf eigen
+brew install ant graphviz sdformat3 protobuf eigen opencv
 ```
 
 Then install the required python packages:
