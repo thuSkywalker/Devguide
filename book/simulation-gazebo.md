@@ -28,7 +28,8 @@ Mac OS requires Gazebo 6.
 
 ```sh
 # dependencies were already installed during the initial install
-brew install opencv gazebo6
+brew install homebrew/science/opencv
+brew install osrf/simulation/gazebo
 ```
 
 ### Linux
@@ -45,7 +46,7 @@ Follow the [Linux installation instructions](http://gazebosim.org/tutorials?tut=
 
 ## Running the Simulation
 
-Run the PX4 SITL with one of the airframes (Quads, planes and VTOL are supported, including optical flow):
+From within the source directory of the PX4 Firmware run the PX4 SITL with one of the airframes (Quads, planes and VTOL are supported, including optical flow):
 
 ### Quadrotor
 
@@ -82,6 +83,9 @@ make posix_sitl_default gazebo_standard_vtol
 cd ~/src/Firmware
 make posix_sitl_default gazebo_tailsitter
 ```
+<aside class="tip">
+On a clean environment you might need to install some python packages like `empy` or `catking_pkg` before running `make_posix_sitl_default`
+<aside>
 
 This will bring up the PX4 shell:
 
