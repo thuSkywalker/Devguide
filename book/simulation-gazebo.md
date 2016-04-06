@@ -27,9 +27,7 @@ Mac OS requires Gazebo 6.
 <div class="host-code"></div>
 
 ```sh
-# dependencies were already installed during the initial install
-brew install homebrew/science/opencv
-brew install osrf/simulation/gazebo
+brew install gazebo6
 ```
 
 ### Linux
@@ -83,8 +81,9 @@ make posix_sitl_default gazebo_standard_vtol
 cd ~/src/Firmware
 make posix_sitl_default gazebo_tailsitter
 ```
+
 <aside class="tip">
-On a clean environment you might need to install some python packages like `empy` or `catking_pkg` before running `make_posix_sitl_default`
+Make sure you followed the [Installing Files and Code](starting-installing.md) guide appropiate for your OS if you run into any errors or missing dependencies.
 <aside>
 
 This will bring up the PX4 shell:
@@ -93,7 +92,7 @@ This will bring up the PX4 shell:
 [init] shell id: 140735313310464
 [init] task name: mainapp
 
-______  __   __    ___ 
+______  __   __    ___
 | ___ \ \ \ / /   /   |
 | |_/ /  \ V /   / /| |
 |  __/   /   \  / /_| |
