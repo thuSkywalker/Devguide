@@ -7,9 +7,9 @@
   * **_MANUAL_**
     * **Fixed wing aircraft/ rovers / boats:** The pilot's control inputs are passed directly to the output mixer.
     * **Multirotors:**
-        * **ACRO:** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot.  This allows the multirotor to become completely inverted.  Throttle is passed directly to the output mixer
-        * **RATTITUDE** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot if they are greater than the mode's threshold.  If not the inputs are passed as roll and pitch  *angle* commands and a yaw *rate* command.  Throttle is passed directly to the output mixer.
-        * **ANGLE** The pilot's inputs are passed as roll and pitch *angle* commands and a yaw *rate* command.  Throttle is passed directly to the output mixer.
+        * **ACRO:** The pilot's inputs are passed as roll *rate*, pitch *rate*, and yaw *rate* commands to the autopilot.  This allows the multirotor to become completely inverted.  Throttle is passed directly to the output mixer
+        * **RATTITUDE** The pilot's inputs are passed as roll *rate*, pitch *rate*, and yaw *rate* commands to the autopilot if they are greater than the mode's threshold.  If not the inputs are passed as roll *angle* and pitch *angle* commands and a yaw *rate* command.  Throttle is passed directly to the output mixer.
+        * **ANGLE** The pilot's inputs are passed as roll *angle* and pitch *angle* commands and a yaw *rate* command.  Throttle is passed directly to the output mixer.
   * **_ASSISTED_**
     * **ALTCTL**
       * **Fixed wing aircraft:** When the roll, pitch and yaw inputs (RPY) are all centered (less than some specified deadband range) the aircraft will return to straight and level flight and keep its current altitude. It will drift with the wind.
